@@ -4,7 +4,7 @@ create database campcode;
 
 -- Remover um Banco de Dados
 
-drop database campcode;
+drop database banco_teste;
 
 -- Selecionar o Banco Utilizado
 
