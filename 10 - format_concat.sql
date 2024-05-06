@@ -16,3 +16,6 @@ select
 	nome,
 	concat('R$ ', format(salario, 2, 'de_DE')) as "Salário"
 from funcionario;
+
+
+
