@@ -1,8 +1,8 @@
 -- Query the list of CITY names starting with vowels (i.i., a, e, i, o or u) from STATION. You result cannot contain duplicates.
 
-select
+select distinct
     city
-from STATION
+from station
 where city regexp '^[aeiou].*$';  -- utlizando o regexp conseguimos filtrar apenas as letras que queremos para consulta.
 
 -- ^ indica o início da string.
@@ -14,9 +14,19 @@ where city regexp '^[aeiou].*$';  -- utlizando o regexp conseguimos filtrar apen
 
 -- Expansão do Exercício --
 
---Query the list of CITY names from STATION which have vowels (i.e., a, e, i, o and u) as both their first and last characters. Your result cannot contain duplicates.
+-- Query the list of CITY names from STATION which have vowels (i.e., a, e, i, o and u) as both their first and last characters. Your result cannot contain duplicates.
 
-select
-    CITY
-from STATION
-where CITY regexp '^[aeiou].*[aeiou]$';
+select distinct
+    city
+from station
+where city regexp '^[aeiou].*[aeiou]$';
+
+-------------------------------------------------------------------
+
+-- Segunda Expansão --
+
+-- Query the list of CITY names from STATION that do not start with vowels. Your result cannot contain duplicates.
+select distinct
+    city
+from station
+where city not regexp '^[aeiou].*$';
