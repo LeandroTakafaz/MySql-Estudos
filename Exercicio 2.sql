@@ -9,3 +9,14 @@ where city regexp '^[aeiou].*$';  -- utlizando o regexp conseguimos filtrar apen
 -- [aeiou] corresponde a qualquer caractere que seja uma vogal (a, e, i, o, u).
 -- .* corresponde a qualquer número de qualquer caractere.
 -- $ indica o fim da string.
+
+-------------------------------------------------------------------
+
+-- Expansão do Exercício --
+
+--Query the list of CITY names from STATION which have vowels (i.e., a, e, i, o and u) as both their first and last characters. Your result cannot contain duplicates.
+
+select
+    CITY
+from STATION
+where CITY regexp '^[aeiou].*[aeiou]$';
