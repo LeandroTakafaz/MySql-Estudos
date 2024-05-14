@@ -48,3 +48,20 @@ HAVING
     OR SUM(total_unique_views) != 0
 ORDER BY 
     contest_id;
+    
+-------------------------------------------------------------------
+
+-- Samantha was tasked with calculating the average monthly salaries for all employees in the EMPLOYEES table, but did not realize her keyboard's 0 key was brolen until after completing the
+-- calculation. She wants your help finding the differente between her miscalculation (using salaries with any zeros removed), and the actual average salary.
+-- Write a query calculating the amount of error (i.e.: actual - miscalculated average monthly salaries), and round it up to the next integer.
+
+select
+    ceil(avg(salary) - avg(replace(salary, '0', ''))) AS error
+from employees;
+
+-- CEIL: A função CEIL arredonda um número para cima para o número inteiro mais próximo.
+-- Por exemplo, CEIL(7.2) retornará 8, e CEIL(-7.2) retornará -7.
+
+-- REPLACE: A função REPLACE substitui todas as ocorrências de uma substring especificada por outra. A sintaxe é REPLACE(campo, 'substring1', 'substring2'),
+-- onde substring1 é a substring que você deseja substituir e substring2 é a substring pela qual você deseja substituir.
+-- Por exemplo, REPLACE('Olá, mundo!', 'mundo', 'SQL') retornará 'Olá, SQL!'.
