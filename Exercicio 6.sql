@@ -56,6 +56,34 @@ where TotalEarnings = (
 -- d happens to equal the maximum value in Western Longitude (LONG_W in STATION).
 -- Quey the Manhattan Distance between points P1 and P2 and round it to a scale of 4 decimal places.
 
-SELECT 
-    ROUND(ABS(MIN(LAT_N) - MAX(LAT_N)) + ABS(MIN(LONG_W) - MAX(LONG_W)), 4)
-FROM STATION;
+select 
+    round(abs(min(lat_n) - max(lat_n)) + abs(min(long_w) - max(long_w)), 4)
+from station;
+
+-- O comando ABS no SQL é uma função matemática que retorna o valor absoluto (positivo) de uma expressão numérica especificada.
+-- Em outras palavras, a função ABS muda de um valor negativo para um valor positivo.
+
+-----------------------------------------------------------------
+
+-- Consider P1 (a, c) and P2 (b, d) to be two points on a 2D plane where (a, b) are the respective minimum and maximum values of Northern Latitude (LAT_N)
+-- and (c, d) are the respective minimum and maximum values of Western Longitude (LONG_W) in STATION.
+-- Query the Euclidean Distance between points P1 and P2 and format your answer to display 4 decimal digits.
+
+select
+    round(sqrt(power(max(lat_n) - min(lat_n), 2) + power(max(long_w) - min(long_w), 2)), 4) AS Euclidean_Distance
+from station;
+
+-- POWER: A função POWER no SQL retorna o valor de um número elevado à potência de outro número. A sintaxe da função POWER é POWER(a, b), onde a é a base e b é o expoente.
+-- SQRT: A função SQRT no SQL retorna a raiz quadrada de um número. A sintaxe da função SQRT é SQRT(number), onde number é um número positivo do qual você deseja calcular a raiz quadrada.
+
+-----------------------------------------------------------------
+
+-- A median is defined as a number separating the higher half of a data set from the lower half.
+-- Query the median of the Northern Latitudes (lat_n) from STATION and round your answer to 4 decimal places.
+
+select round(lat_n, 4) AS MedianLat
+from (
+    select lat_n, count(*) over() as total_rows, row_number() over(order by lat_n) as row_num
+    from station
+) t
+where t.row_num in ((total_rows + 1) / 2, (total_rows + 2) / 2);
