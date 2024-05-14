@@ -16,7 +16,7 @@ order by name asc;
 
 -------------------------------------------------------------------
 
--- White a query that prints a list of employee names (i.e.: the name attribute) for employees in Employee having a salary greater than $2000 per month 
+-- Write a query that prints a list of employee names (i.e.: the name attribute) for employees in Employee having a salary greater than $2000 per month 
 -- who have been employees for less than 10 months. Sort your result by ascending employee_id.
 
 select name from employee
@@ -29,3 +29,22 @@ order by employee_id asc;
 -- hacker_id, name, and the sums of total_submissions, total_accepted_submissions, total_views, and total_unique_views
 -- for each contest sorted by contest_id. Exclude the contest from the result if all four sums are 0.
 
+SELECT 
+    contest_id,
+    hacker_id,
+    name,
+    SUM(total_submissions) AS total_submissions,
+    SUM(total_accepted_submissions) AS total_accepted_submissions,
+    SUM(total_views) AS total_views,
+    SUM(total_unique_views) AS total_unique_views
+FROM 
+    contests
+GROUP BY 
+    contest_id, hacker_id, name
+HAVING 
+    SUM(total_submissions) != 0 
+    OR SUM(total_accepted_submissions) != 0 
+    OR SUM(total_views) != 0 
+    OR SUM(total_unique_views) != 0
+ORDER BY 
+    contest_id;
