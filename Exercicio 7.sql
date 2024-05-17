@@ -55,3 +55,16 @@ SET @row_number = 0;
 SELECT REPEAT('* ', 21 - @row_number := @row_number + 1) AS PATTERN
 FROM information_schema.tables
 LIMIT 20;
+
+-- P(R) represents a pattern drawn by Julia in R rows. The following pattern represents P(5):
+*
+**
+***
+****
+*****
+-- Write a query to print the pattern P(20).
+
+SET @row_number = 0;
+SELECT REPEAT('* ', @row_number := @row_number + 1) AS PATTERN
+FROM information_schema.tables
+LIMIT 20;
